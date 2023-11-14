@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Inheritance.SingleLevelInheritance&apos; to &apos;Demo&apos;&#x0D;&#x0A;- Original project: &apos;JavaProjects&apos;&#x0D;&#x0A;- Original element: &apos;Inheritance.SingleLevelInheritance&apos;&#x0D;&#x0A;- Renamed element: &apos;Inheritance.Demo&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;SingleLevelInheritance&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;Inheritance{SingleLevelInheritance.java[SingleLevelInheritance" matchStrategy="1" name="Demo" qualified="false" references="true" similarDeclarations="false" stamp="1681407722172" textual="false" version="1.0"/>
+</session>

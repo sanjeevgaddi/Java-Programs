@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\91734\Desktop\kodnest\ProgramSession\Jan2023java\.metadata\.plugins\org.eclipse.jdt.core
+2814554306.index
+760091825.index
+1865797976.index
