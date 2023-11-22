@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar Example</title>
+    <script>
+		function handelFormSubmisson(event)
+		{
+			const form=event.target;
+			event.preventDefault();
+			alert("Lesson added successfully!");
+			form.submit();
+		}
+	</script>
+    <!-- Link Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        body {
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+          
+        }
+
+        .navbar {
+            background-color: #e7e064;
+        }
+
+        .navbar-brand {
+            padding: 0 15px;
+        }
+
+        .navbar-brand img {
+            max-height: 40px;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .navbar-nav .nav-item {
+            padding: 0 15px;
+        }
+        
+        
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            animation: fade-in 1s;
+            margin-top: 0%;
+            
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">  
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/images/logo.png" alt="Logo">
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">User</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3" >
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="mb-2" style="color: aliceblue; font-family: 'Times New Roman', Times, serif;">Add a New Lesson!</h2>
+                <form class="control" style="font-weight: bold ;" action="/addlesson" onsubmit="handelFormSubmisson(event)" method="POST" > >
+                    <div class="mb-3">
+                        <label for="name" class="form-label" style="color: aliceblue; font-family: 'Times New Roman', Times, serif;">Course Id</label>
+                        <input type="text"class="form-control" id="courseid" name="courseid" required placeholder="Enter the course Id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id" class="form-label" style="color: aliceblue; font-family: 'Times New Roman', Times, serif;">Lesson Id</label>
+                        <input type="text"class="form-control" id="lessonid" name="lessonid" required placeholder="Enter the lesson Id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label" style="color: aliceblue; font-family: 'Times New Roman', Times, serif;">Lesson Name</label>
+                        <input type="text"  class="form-control" id="lessonname" name="lessonname" required placeholder="Enter the lesson Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="topic" class="form-label" style="color: aliceblue; font-family: 'Times New Roman', Times, serif;">Lesson Topic</label>
+                        <input type="text"  class="form-control" id="lessontopic" name="lessontopic" required placeholder="Enter the lesson Topic">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label" style="color: aliceblue; font-family: 'Times New Roman', Times, serif;">Lesson Video Link</label>
+                        <input type="text"  class="form-control" id="videolink" name="videolink" required placeholder="Enter the lesson video Link">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-primary:hover" >Add Lesson</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Link Bootstrap JS (Optional, for certain features) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

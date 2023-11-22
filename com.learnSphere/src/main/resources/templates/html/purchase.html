@@ -1,0 +1,106 @@
+<!DOCTYPE HTML> 
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<head> 
+
+<!-- Required meta tags --> 
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+<!-- Bootstrap CSS --> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> 
+<title>Course List</title> 
+</head> 
+<body> 
+	<div class="container"> 
+		<h3>List of Courses</h3>
+		<hr> 
+		
+		<table class="table table-bordered table-striped"> 
+				<thead class="table-dark"> 
+						<tr> 
+								<th scope="col">Course Id</th>
+								<th  scope="col">Course Name</th> 
+								<th  scope="col">Course Price</th>
+								<th scope="col">Buy Course</th>
+								<th scope="col">Lessons</th>
+						</tr>
+				</thead> 
+				<tbody> 
+						<tr th:each="course : ${courselist}"> 
+								<td th:text="${course.course_id}"/>
+								<td th:text="${course.course_name}" />	 
+								 <td th:text="${course.course_price}" />	
+								 <td>
+									 <form id="payment-form">
+										 <input type="hidden" class="email" value="${session.loggedInUser.email}"/>
+										 <input type="hidden" class="course_id" value="${course.course_id}"/>
+										 <button type="submit" id="pay-button" class="btn btn-success buy-button" th:data-amount="${course.course_price}">Buy</button>
+									 </form>
+								 </td>
+						</tr> 
+				</tbody>		 
+		</table> 
+	</div> 
+<script>
+$(document).ready(function() {
+	$(".buy-button").click(function(e) {
+		e.preventDefault();
+		var form = $(this).closest('form');
+		var amount = $(this).data("amount");
+		var email = form.find('.email').val();
+		var courseId = form.find('.course_id').val();
+		createOrder(amount, email, courseId);
+		});
+		});
+
+function createOrder(amount, email, courseId) {
+	alert(amount+email+courseId)
+	$.post("/createOrder", { amount: amount, email: email, courseId: courseId })
+	.done(function(order) {
+		order = JSON.parse(order);
+		var options = {
+			"key": "rzp_test_ANiFbfIjOIx3EF",
+			"amount": order.amount_due.toString(),
+			"currency": "INR",
+			"name": "Learn Sphere",
+			"description": "Test Transaction",
+			"order_id": order.id,
+			"handler": function (response) {
+				verifyPayment(response.razorpay_order_id, response.razorpay_payment_id, response.razorpay_signature);
+				},
+				"prefill": {
+					"name": "Your Name", "email": "test@example.com",
+					"contact": "9999999999"
+					},
+					"notes": {
+						"address": "Your Address"
+						},
+						"theme": {
+							"color": "#F37254"
+							}
+							};
+							var rzp1 = new Razorpay(options);
+							rzp1.open();
+						})
+						.fail(function(error) {
+							console.error("Error:", error);
+						});
+				}
+function verifyPayment(orderId, paymentId, signature) {
+	$.post("/verify", { orderId: orderId, paymentId: paymentId, signature: signature })
+	.done(function(isValid) {
+		if (isValid) {
+			console.log("Payment successful");
+			}
+		 else {
+			 console.log("Payment failed");
+			 }
+		})
+		.fail(function(error) {
+			console.error("Error:",error);
+		});
+}
+</script>
+
+</body> 
+</html> 

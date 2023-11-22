@@ -1,0 +1,12 @@
+ body {
+            background-image: url('images/ls.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+  .content {
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
